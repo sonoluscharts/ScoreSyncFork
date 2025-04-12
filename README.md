@@ -11,16 +11,14 @@ npm install
 ```
 Create a folder in the levels file with any name you like and put usc in it.
 
-project-root/
-├── README.md
-├── src/
-├──lib  
-└── levels/
-    └── your_folder_name/
-        └── chart.usc
-            cover.png
-            bgm.mp3
+```
+levels
+    ⎿your_folder_name
+        ⎿chart.usc
+          bgm.mp3
+          cover.png
 
+```
 
 ```bash
 npm run start
