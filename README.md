@@ -27,7 +27,7 @@ levels
 npm run start
 ```
 ## Thanks
-(Sonolus-pjsekai-engine-extended)[https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file]
+[sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
 
 ## 特徴
 uscファイルが更新されたら、自動でsonolusのも更新します
@@ -57,5 +57,7 @@ levels
 ```bash
 npm run start
 ```
+## Thanks
+[sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
 
 起動したら、localhost:3939で開きます
