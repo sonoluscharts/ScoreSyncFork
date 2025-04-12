@@ -3,29 +3,13 @@
 When the usc file is updated, it will automatically update sonolus' as well.
 
 ## Usage
-```bash
-git clone https://github.com/Piliman22/ScoreSync
-```
-```bash
-cd ScoreSync
-```
-```bash
-npm install
-```
-Create a folder in the levels file with any name you like and put usc in it.
 
-```
-levels
-    ⎿your_folder_name
-        ⎿chart.usc
-          bgm.mp3
-          cover.png
+Download release.zip from the [releases](https://github.com/Piliman22/ScoreSync/releases) page.
 
-```
+Create a folder inside the levels directory, and add a .usc, .mp3, and .png file into it.
 
-```bash
-npm run start
-```
+Launch scoresync.exe.
+
 ## Thanks
 [sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
 
@@ -33,30 +17,11 @@ npm run start
 uscファイルが更新されたら、自動でsonolusのも更新します
 
 ## 使い方
+[リリース](https://github.com/Piliman22/ScoreSync/releases)から、release.zipをダウンロード
+levelsの中に適当なフォルダを作り、その中に、.usc,.mp3,.pngを追加。
 
-```bash
-git clone https://github.com/Piliman22/ScoreSync
-```
-```bash
-cd ScoreSync
-```
-```bash
-npm install
-```
-levelsフォルダの中に適当なフォルダを作成し、その中にusc,mp3,pngを置いてください
+scoresync.exeを起動。
 
-```
-levels
-    ⎿your_folder_name
-        ⎿chart.usc
-          bgm.mp3
-          cover.png
-
-```
-
-```bash
-npm run start
-```
 ## Thanks
 [sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
 
