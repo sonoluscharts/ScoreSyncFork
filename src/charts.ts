@@ -20,16 +20,18 @@ export async function watchAndConvertCharts(directoryPath: string): Promise<void
         const watcher = watch(directoryPath, { recursive: true });
         
         for await (const event of watcher) {
-            if (event.filename && path.extname(event.filename) === '.usc') {
+            const ext = event.filename ? path.extname(event.filename).toLowerCase() : '';
+            if (event.filename && (ext === '.usc' || ext === '.sus')) {
                 const filePath = path.join(directoryPath, event.filename);
                 console.log(`update: ${filePath}`);
                 
                 try {
                     const buffer = await fs.promises.readFile(filePath);
                     
-                    const convertedData = await convertChart(buffer, 'usc');
+                    const fileType = ext.substring(1); // 先頭の'.'を除去
+                    const convertedData = await convertChart(buffer, fileType);
                     
-                    const fileName = path.basename(filePath, '.usc');
+                    const fileName = path.basename(filePath, ext);
                     const outputDir = path.resolve('./lib/repository/level');
                     
                     if (!fs.existsSync(outputDir)) {
@@ -161,14 +163,14 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
     try {
         const files = await fs.promises.readdir(directoryPath);
         
-        const uscFiles: string[] = [];
+        const scoreFiles: string[] = [];
         const imageFiles: string[] = [];
         const audioFiles: string[] = [];
         
         files.forEach(file => {
             const ext = path.extname(file).toLowerCase();
-            if (ext === '.usc') {
-                uscFiles.push(file);
+            if (ext === '.usc' || ext === '.sus') {
+                scoreFiles.push(file);
             } else if (['.jpg', '.jpeg', '.png'].includes(ext)) {
                 imageFiles.push(file);
             } else if (['.mp3', '.wav', '.ogg'].includes(ext)) {
@@ -176,13 +178,15 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
             }
         });
         
-        for (const uscFile of uscFiles) {
-            const baseName = path.basename(uscFile, '.usc');
+        for (const scoreFile of scoreFiles) {
+            const ext = path.extname(scoreFile).toLowerCase();
+            const baseName = path.basename(scoreFile, ext);
             console.log(`loading: ${baseName}`);
             
             let bestMatchImage = findBestMatch(baseName, imageFiles);
             let bestMatchAudio = findBestMatch(baseName, audioFiles);
             
+            // ...以下の処理は同じ...
             if (!bestMatchImage && imageFiles.length > 0) {
                 bestMatchImage = imageFiles[0] || null;
                 console.log(`[!]: ${baseName}Not found. Use ${bestMatchImage}`);
@@ -193,10 +197,12 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
                 console.log(`[!]: ${baseName}Not found. Use ${bestMatchAudio}.`);
             }
             
-            const uscPath = path.join(directoryPath, uscFile);
-            const buffer = await fs.promises.readFile(uscPath);
-            const convertedData = await convertChart(buffer, 'usc');
+            const scorePath = path.join(directoryPath, scoreFile);
+            const buffer = await fs.promises.readFile(scorePath);
+            const fileType = ext.substring(1); // 先頭の'.'を除去
+            const convertedData = await convertChart(buffer, fileType);
             
+            // ...以下の処理は同じ...
             const levelDir = path.resolve('./lib/repository/level');
             const coverDir = path.resolve('./lib/repository/cover');
             const bgmDir = path.resolve('./lib/repository/bgm');
