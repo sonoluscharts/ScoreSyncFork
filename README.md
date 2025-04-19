@@ -14,7 +14,7 @@ Launch scoresync.exe.
 [sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
 
 ## 特徴
-uscファイルが更新されたら、自動でsonolusのも更新します
+uscファイル、susファイルが更新されたら、自動でsonolusのも更新します
 
 ## 使い方
 [リリース](https://github.com/Piliman22/ScoreSync/releases)から、release.zipをダウンロード
