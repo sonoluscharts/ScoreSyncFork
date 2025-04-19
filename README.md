@@ -1,6 +1,6 @@
 # ScoreSync
 ## Fearture
-When the usc file is updated, it will automatically update sonolus' as well.
+When the usc file or sus file is updated, it will automatically update sonolus' as well.
 
 ## Usage
 
