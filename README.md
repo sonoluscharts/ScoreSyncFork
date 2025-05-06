@@ -19,7 +19,14 @@ uscファイル、susファイルが更新されたら、自動でsonolusのも�
 ## 使い方
 [リリース](https://github.com/Piliman22/ScoreSync/releases)から、release.zipをダウンロード
 levelsの中に適当なフォルダを作り、その中に、.usc(もしくは.sus),.mp3,.pngを追加。
-
+config.jsonに下記の内容を記述
+```
+{
+    "title": "曲名",
+    "author": "譜面作者(任意)",
+    "rating": 難易度(かならず半角英数字で)
+}
+```
 scoresync.exeを起動。
 
 ## Thanks
