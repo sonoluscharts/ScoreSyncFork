@@ -28,7 +28,7 @@ export async function watchAndConvertCharts(directoryPath: string): Promise<void
                 try {
                     const buffer = await fs.promises.readFile(filePath);
                     
-                    const fileType = ext.substring(1); // 先頭の'.'を除去
+                    const fileType = ext.substring(1);
                     const convertedData = await convertChart(buffer, fileType);
                     
                     const fileName = path.basename(filePath, ext);
@@ -118,18 +118,18 @@ export async function convertExistingCharts(directoryPath: string): Promise<void
     }
 }
 
-export const putChart = (chartName: string, coverFile: string, bgmFile: string) => {
+export const putChart = (chartName: string, coverFile: string, bgmFile: string, config: any = {}) => {
     const now = new Date();
     const dateString = now.toLocaleString('ja-JP');
 
     sonolus.level.items.push({
         name: chartName,
         version: 1 as const,
-        title: {en: chartName},
-        artists: {en: ''},
-        author: {en: ''},
-        rating: 0,
-        tags: [],
+        title: {en: config.title || ''},
+        artists: {en: config.artists || ''},
+        author: {en: config.author || ''},
+        rating: config.rating || 0,
+        tags: config.tags || [],
         engine: engineInfo.name,
         description: {en: `Updated at: ${dateString}`},
         useSkin: {
@@ -166,6 +166,7 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
         const scoreFiles: string[] = [];
         const imageFiles: string[] = [];
         const audioFiles: string[] = [];
+        let configFile: string | null = null;
         
         files.forEach(file => {
             const ext = path.extname(file).toLowerCase();
@@ -175,8 +176,22 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
                 imageFiles.push(file);
             } else if (['.mp3', '.wav', '.ogg'].includes(ext)) {
                 audioFiles.push(file);
+            } else if (ext === '.json' && file.toLowerCase() === 'config.json') {
+                configFile = file;
             }
         });
+        
+        // configの読み込み
+        let config: any = {};
+        if (configFile) {
+            try {
+                const configContent = await fs.promises.readFile(path.join(directoryPath, configFile), 'utf8');
+                config = JSON.parse(configContent);
+                console.log(`config loaded: ${configFile}`);
+            } catch (error) {
+                console.error(`config.json error: `, error);
+            }
+        }
         
         for (const scoreFile of scoreFiles) {
             const ext = path.extname(scoreFile).toLowerCase();
@@ -186,7 +201,6 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
             let bestMatchImage = findBestMatch(baseName, imageFiles);
             let bestMatchAudio = findBestMatch(baseName, audioFiles);
             
-            // ...以下の処理は同じ...
             if (!bestMatchImage && imageFiles.length > 0) {
                 bestMatchImage = imageFiles[0] || null;
                 console.log(`[!]: ${baseName}Not found. Use ${bestMatchImage}`);
@@ -202,7 +216,6 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
             const fileType = ext.substring(1); // 先頭の'.'を除去
             const convertedData = await convertChart(buffer, fileType);
             
-            // ...以下の処理は同じ...
             const levelDir = path.resolve('./lib/repository/level');
             const coverDir = path.resolve('./lib/repository/cover');
             const bgmDir = path.resolve('./lib/repository/bgm');
@@ -232,7 +245,8 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
             const coverFileName = bestMatchImage ? baseName + path.extname(bestMatchImage) : '';
             const bgmFileName = bestMatchAudio ? baseName + path.extname(bestMatchAudio) : '';
             
-            putChart(baseName, coverFileName, bgmFileName);
+            // configの情報を反映させる
+            putChart(baseName, coverFileName, bgmFileName, config);
             
             console.log(`${baseName} finished!`);
         }
