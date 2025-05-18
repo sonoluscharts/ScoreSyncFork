@@ -27,6 +27,7 @@ config.jsonに下記の内容を記述
     "rating": 難易度(かならず半角英数字で)
 }
 ```
+ディレクトリにconfig.jsonがない場合自動で生成されます
 scoresync.exeを起動。
 
 ## Thanks
