@@ -44,13 +44,13 @@ export async function watchAndConvertCharts(directoryPath: string): Promise<void
                     await fs.promises.writeFile(outputPath, compressed);
                     
                     console.log(`succes: ${outputPath}`);
-                } catch (error) {
-                    console.error(`error : ${filePath}`, error);
+                } catch (e) {
+                    console.error(`error : ${filePath}`, e);
                 }
             }
         }
-    } catch (error) {
-        console.error('error :', error);
+    } catch (e) {
+        console.error('error :', e);
     }
 }
 
@@ -75,15 +75,15 @@ export async function processLevelStructure(baseDirectoryPath: string): Promise<
             
             try {
                 await processLevelDirectory(levelDir);
-            } catch (error) {
-                console.error(`"${levelName}" error: `, error);
+            } catch (e) {
+                console.error(`"${levelName}" error: `, e);
             }
         }
         
         console.log(`\ndone!`);
         
-    } catch (error) {
-        console.error('error: ', error);
+    } catch (e) {
+        console.error('error: ', e);
     }
 }
 
@@ -113,8 +113,8 @@ export async function convertExistingCharts(directoryPath: string): Promise<void
         
         await processDirectory(directoryPath);
         console.log(`success`);
-    } catch (error) {
-        console.error('error:', error);
+    } catch (e) {
+        console.error('error:', e);
     }
 }
 
@@ -191,6 +191,24 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
             } catch (error) {
                 console.error(`config.json error: `, error);
             }
+        } else if (scoreFiles.length > 0) {
+            config = {
+                title: path.basename(directoryPath),
+                artists: '',
+                author: '',
+                rating: 0,
+            };
+
+            try {
+                await fs.promises.writeFile(
+                    path.join(directoryPath, 'config.json'),
+                    JSON.stringify(config, null, 2),
+                    'utf8'
+                )
+                console.log(`config.json created: ${path.join(directoryPath, 'config.json')}`);
+            } catch (e) {
+                console.error(`config.json error: `, e);
+            }
         }
         
         for (const scoreFile of scoreFiles) {
@@ -198,6 +216,12 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
             const baseName = path.basename(scoreFile, ext);
             console.log(`loading: ${baseName}`);
             
+            let chartConfig = {...config};
+
+            if (!chartConfig.title || chartConfig.title === path.basename(directoryPath)) {
+                chartConfig.title = baseName;
+            }
+
             let bestMatchImage = findBestMatch(baseName, imageFiles);
             let bestMatchAudio = findBestMatch(baseName, audioFiles);
             
@@ -246,13 +270,13 @@ export async function processLevelDirectory(directoryPath: string): Promise<void
             const bgmFileName = bestMatchAudio ? baseName + path.extname(bestMatchAudio) : '';
             
             // configの情報を反映させる
-            putChart(baseName, coverFileName, bgmFileName, config);
+            putChart(baseName, coverFileName, bgmFileName, chartConfig);
             
             console.log(`${baseName} finished!`);
         }
         
-    } catch (error) {
-        console.error('error:', error);
+    } catch (e) {
+        console.error('error:', e);
     }
 }
 
