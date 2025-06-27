@@ -9,7 +9,7 @@
     "start": "tsc && node dist/index.js",
     "dev": "node --loader ts-node/esm src/index.ts",
     "build": "tsc",
-    "build:caxa": "tsc && caxa -i . -o scoresync.exe -- node dist/index.js"
+    "build:caxa": "npm run build && caxa -i . -o release/scoresync.exe --exclude \"node_modules/@types/**\" --exclude \"src/**\" --exclude \"*.ts\" --exclude \"release/**\" -- node ./dist/index.js"
   },
   "pkg": {
     "targets": [
