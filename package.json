@@ -9,7 +9,7 @@
     "start": "tsc && node dist/index.js",
     "dev": "node --loader ts-node/esm src/index.ts",
     "build": "tsc",
-    "build:caxa": "npm run build && caxa -i . -o release/scoresync.exe --exclude \"node_modules/@types/**\" --exclude \"src/**\" --exclude \"*.ts\" --exclude \"release/**\" -- node ./dist/index.js"
+    "build:caxa": "npm run build && caxa -i . -o release/scoresync.exe --exclude \"src/**\" --exclude \"*.ts\" --exclude \"*.map\" --exclude \"release/**\" --exclude \"node_modules/@types/**\" --exclude \".git/**\" --exclude \"*.md\" --exclude \"tsconfig.json\" -- \"{{caxa}}/node_modules/.bin/node\" \"{{caxa}}/dist/index.js\""
   },
   "pkg": {
     "targets": [
@@ -32,7 +32,8 @@
     "@sonolus/free-pack": "^1.1.7",
     "express": "^4.21.2",
     "morgan": "^1.10.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "usctool": "^0.4.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
@@ -41,6 +42,8 @@
     "nexe": "^5.0.0-beta.4",
     "pkg": "^5.8.1",
     "ts-node": "^10.9.2",
-    "usctool": "^0.4.1"
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
