@@ -32,7 +32,13 @@ scoresync.exeを起動。
 
 ディレクトリにconfig.jsonがない場合自動で生成されます
 
+
+起動したら、localhost:3939で開きます
+
+## 注意
+
+distフォルダ、libフォルダは基本触らないでください。バグります。
+
 ## Thanks
 [sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
 
-起動したら、localhost:3939で開きます
