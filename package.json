@@ -9,8 +9,7 @@
     "start": "tsc && node dist/index.js",
     "dev": "node --loader ts-node/esm src/index.ts",
     "build": "tsc",
-    "pkg": "npm run build && pkg . --out-path=dist-exe",
-    "exe": "nexe -i ./dist/index.js -o test.exe -t windows-x64-20.16.0"
+    "build:caxa": "tsc && caxa -i . -o scoresync.exe -- node dist/index.js"
   },
   "pkg": {
     "targets": [
