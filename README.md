@@ -39,6 +39,10 @@ scoresync.exeを起動。
 > [!CAUTION]
 > libフォルダは基本触らないでください。バグります。
 
+## 推奨バージョン
+
+Sonolusに広告機能が入りましたので、もし効率よく今後も使いたい場合Sonolusのバージョン**0.9.0**を使い、ScoreSyncのバージョン[**0.0.8**](https://github.com/Piliman22/ScoreSync/releases/tag/0.0.8)を使うことを推奨します
+
 ## Thanks
 [sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
 
