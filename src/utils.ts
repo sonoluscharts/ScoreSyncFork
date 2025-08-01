@@ -1,6 +1,7 @@
 import os from 'os';
 import path from 'path';
 import fs from 'fs/promises';
+import { Request, Response } from 'express';
 import { sonolus } from './index.js';
 
 export const getLocalIpv4 = () => {
@@ -22,7 +23,7 @@ export const resolveEngineResource = (name: string) => {
 }
 
 export const getfile = () => {
-    sonolus.router.get('/lib/repository/:type/:hash', async (req, res) => {
+    sonolus.router.get('/lib/repository/:type/:hash', async (req: Request, res: Response) => {
         const { type, hash } = req.params as { type: 'level' | 'cover' | 'bgm' | 'bgmpreview' | 'background' | 'banner' | 'skin' | 'particle' | 'effect'; hash: string };
         const filePath = path.join(process.cwd(), 'lib/repository', type, hash);
 
