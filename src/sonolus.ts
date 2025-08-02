@@ -5,7 +5,7 @@ import { resolveEngineResource } from "./utils.js";
 export const install = () => {
     sonolus.engine.items.push({
         ...engineInfo,
-        version: 12,
+        version: 13,
         skin: 'chcy-pjsekai-extended-01',
         background: 'darkblue',
         effect: 'chcy-pjsekai-fixed',
