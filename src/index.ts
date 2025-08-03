@@ -23,7 +23,8 @@ async function startServer() {
     
     app.listen(port, () => {
         console.log('Success')
-        console.log(`Server is running on http://localhost:${port}`)
+        // 紛らわしいという報告を受けたため、コメントアウト
+        // console.log(`Server is running on http://localhost:${port}`)
         console.log(`go to server https://open.sonolus.com/${ipAddress}:${port}/`)
     })
 }

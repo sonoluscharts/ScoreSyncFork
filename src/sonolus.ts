@@ -1,6 +1,6 @@
 import { sonolus } from "./index.js";
 import { engineInfo } from "../lib/sonolus-pjsekai-engine-extended/index.js";
-import { resolveEngineResource } from "./utils.js";
+import { resolveEngineResource, getLocalIpv4 } from "./utils.js";
 
 export const install = () => {
     sonolus.engine.items.push({
@@ -124,6 +124,12 @@ export const install = () => {
             hash: '3ac52ee309090423039c307cadcea20345d96003',
             url: '/lib/repository/effect/3ac52ee309090423039c307cadcea20345d96003'
         }
+    })
+
+    sonolus.router.get('/', (req, res) => {
+        const ipAddress = getLocalIpv4();
+
+        res.redirect(`https://open.sonolus.com/${ipAddress}:3939/`);
     })
 
     sonolus.serverInfoHandler = () => {
