@@ -1,14 +1,34 @@
 # ScoreSync
-## Fearture
+## Feature
 When the usc file or sus file is updated, it will automatically update sonolus' as well.
 
 ## Usage
 
-Download release.zip from the [releases](https://github.com/Piliman22/ScoreSync/releases) page.
+1. Download release.zip from the [releases](https://github.com/Piliman22/ScoreSync/releases) page and extract it.
 
-Create a folder inside the levels directory, and add a .usc, .mp3, and .png file into it.
+2. Create a new folder (with any name) inside the levels directory, and add a .usc (or .sus), .mp3, and .png file into it.
 
-Launch scoresync.exe.
+3. Launch scoresync.exe.
+
+4. You will see "go to server https://~~~", click on it and scan the QR code with your device that has Sonolus installed to add it.
+
+## FAQ
+
+Q. I can't connect to the server.
+
+A. Check your firewall settings, make sure you're on the same network, and verify the IP address. For the IP address, run `ipconfig` in Command Prompt and check if the IP address is correct. Sometimes the script may not retrieve the IP address properly depending on the device, so using the IP address from `ipconfig` may work better.
+
+Q. I get an error like "Failed to run command: exec: "C:\Users\Username\AppData\Local\Temp/caxa/applications/scoresync\ez38qywxjw/0/node_modules/.bin/node": file does not exist" or the application closes immediately after opening.
+
+A. Go to "C:\Users\Username\AppData\Local\Temp/caxa/applications/" and delete the scoresync folder. This is just an error caused by accumulated temporary files.
+
+## Caution
+> [!CAUTION]
+> Do not touch the lib folder. It will cause bugs.
+
+## Recommended Versions
+
+Since Sonolus has added advertising features, if you want to continue using it efficiently, we recommend using Sonolus version **0.9.0** and ScoreSync version [**0.0.8**](https://github.com/Piliman22/ScoreSync/releases/tag/0.0.8).
 
 ## Thanks
 [sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
@@ -17,23 +37,23 @@ Launch scoresync.exe.
 uscファイル、susファイルが更新されたら、自動でsonolusのも更新します
 
 ## 使い方
-[リリース](https://github.com/Piliman22/ScoreSync/releases)から、release.zipをダウンロード
-levelsの中に適当なフォルダを作り、その中に、.usc(もしくは.sus),.mp3,.pngを追加。
-config.jsonに下記の内容を記述
-```
-{
-    "title": "曲名",
-    "author": "譜面作者(任意)",
-    "rating": 難易度(かならず半角英数字で)
-}
-```
+1. [リリース](https://github.com/Piliman22/ScoreSync/releases)から、release.zipをダウンロードし、展開してください。
 
-scoresync.exeを起動。
+2. levelsの中に新しいフォルダ(名前は自由に)を作り、その中に、.usc(もしくは.sus),.mp3,.pngを追加してください。
 
-ディレクトリにconfig.jsonがない場合自動で生成されます
+3. scoresync.exeを起動してください。
 
+4. go to server https://~~~とあるので、そこをクリックし、Sonolusの入っている端末でQRコードを読み込んで開いて追加してください。
 
-起動したら、localhost:3939で開きます
+## よくある質問
+
+Q. サーバーに入れません。
+
+A. ファイアウォール周り、同じネットワークか、ipアドレスを見てください。ipアドレスについては、コマンドプロンプトで`ipconfig`とうち、そこでipアドレスがあってるかどうかを確認してください。端末によってはスクリプトから取得がうまく行っていない場合があるので`ipconfig`から出てきたほうのipアドレスを使うことでうまくいく場合があります
+
+Q. Failed to run command: exec: "C:\Users\Username\AppData\Local\Temp/caxa/applications/scoresync\ez38qywxjw/0/node_modules/.bin/node": file does not exist のようなエラー　もしくは、開いたら一瞬で閉じます
+
+A. "C:\Users\Username\AppData\Local\Temp/caxa/applications/"に行き、scoresyncフォルダを削除してください。一時ファイルがたまっただけのエラーです。
 
 ## 注意
 > [!CAUTION]

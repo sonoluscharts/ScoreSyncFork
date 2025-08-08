@@ -9,7 +9,7 @@
     "start": "tsc && node dist/index.js",
     "dev": "node --loader ts-node/esm src/index.ts",
     "build": "tsc",
-    "build:caxa": "npm run build && caxa -i . -o release/scoresync.exe --exclude \"src/**\" --exclude \"*.ts\" --exclude \"*.map\" --exclude \"release/**\" --exclude \"node_modules/@types/**\" --exclude \".git/**\" --exclude \"*.md\" --exclude \"tsconfig.json\" -- \"{{caxa}}/node_modules/.bin/node\" \"{{caxa}}/dist/index.js\""
+    "build:caxa": "npm run build && caxa -i . -o release/scoresync.exe --exclude \"src/**\" --exclude \"*.ts\" --exclude \"*.map\" --exclude \"release/**\" --exclude \"node_modules/@types/**\" --exclude \".git/**\" --exclude \"*.md\" --exclude \"tsconfig.json\" -- \"node\" \"{{caxa}}/dist/index.js\""
   },
   "pkg": {
     "targets": [
@@ -32,12 +32,18 @@
     "@sonolus/free-pack": "^1.1.7",
     "express": "^4.21.2",
     "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2",
     "typescript": "^5.8.3",
-    "usctool": "^0.4.1"
+    "usctool": "^0.4.1",
+    "uuid": "^9.0.1",
+    "ws": "^8.14.2"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/morgan": "^1.9.9",
+    "@types/node-fetch": "^2.6.7",
+    "@types/uuid": "^9.0.7",
+    "@types/ws": "^8.5.8",
     "caxa": "^3.0.1",
     "nexe": "^5.0.0-beta.4",
     "pkg": "^5.8.1",
