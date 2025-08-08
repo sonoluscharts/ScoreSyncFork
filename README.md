@@ -10,7 +10,7 @@ When the usc file or sus file is updated, it will automatically update sonolus' 
 
 3. Launch scoresync.exe.
 
-4. You will see "go to server https://~~~", open your blow it and scan the QR code with your device that has Sonolus installed to add it.
+4. You will see "go to server https://~~~", open your browser it and scan the QR code with your device that has Sonolus installed to add it.
 
 ## FAQ
 
