@@ -4,18 +4,19 @@ import fs from 'fs/promises';
 import { Request, Response } from 'express';
 import { sonolus } from './index.js';
 
-export const getLocalIpv4 = () => {
+export const getLocalIpv4 = (): string[] => {
     const interfaces = os.networkInterfaces();
+    const addresses: string[] = [];
     for (const name of Object.keys(interfaces)) {
         const iface = interfaces[name];
         if (!iface) continue;
         for (const net of iface) {
             if (net.family === 'IPv4' && !net.internal) {
-                return net.address;
+                addresses.push(net.address);
             }
         }
     }
-    return 'localhost';
+    return addresses.length > 0 ? addresses : ['localhost'];
 };
 
 export const resolveEngineResource = (name: string) => {

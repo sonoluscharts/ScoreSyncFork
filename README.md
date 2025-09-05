@@ -65,4 +65,3 @@ Sonolusに広告機能が入りましたので、もし効率よく今後も使�
 
 ## Thanks
 [sonolus-pjsekai-engine-extended](https://github.com/sevenc-nanashi/sonolus-pjsekai-engine-extended?tab=readme-ov-file)
-
