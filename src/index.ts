@@ -21,16 +21,21 @@ async function startServer() {
     
     sonolus.load(packPath)
     
-    app.listen(port, () => {
-        console.log('Success')
-        // 紛らわしいという報告を受けたため、コメントアウト
-        // console.log(`Server is running on http://localhost:${port}`)
-        ipAddresses.forEach(ip =>
-            console.log(`go to server https://open.sonolus.com/${ip}:${port}/`)
-        );
-    })
-}
+app.listen(port, () => {
+    console.log('Success')
+    console.log(`Server is running on port ${port}. Access it via your Render URL.`)
+});
 
+// in case if doesnt work app.listen:
+    // app.listen(port, () => {
+   // console.log('Success')
+    // 紛らわしいという報告を受けたため、コメントアウト
+    // console.log(`Server is running on http://localhost:${port}`)
+    // ipAddresses.forEach(ip =>
+       // console.log(`go to server https://open.sonolus.com/${ip}:${port}/`)
+   // );
+// })
 startServer().catch(error => {
     console.error('error :', error);
+
 });
