@@ -9,7 +9,7 @@ const app = express();
 export const sonolus = new Sonolus()
 
 const ipAddresses = getLocalIpv4();
-const port = 3939;
+const port = process.env.PORT || 3000;
 const chartDirectory = './levels'; 
 app.use(sonolus.router)
 
@@ -40,3 +40,4 @@ startServer().catch(error => {
 });
 
 }
+
