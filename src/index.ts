@@ -37,5 +37,6 @@ app.listen(port, () => {
 // })
 startServer().catch(error => {
     console.error('error :', error);
-
 });
+
+}
